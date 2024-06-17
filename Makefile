@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: tfelguei <tfelguei.students.42porto.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/15 14:43:34 by tfelguei          #+#    #+#              #
-#    Updated: 2024/05/15 14:45:00 by tfelguei         ###   ########.fr        #
+#    Created: 2024/06/07 14:34:03 by tfelguei          #+#    #+#              #
+#    Updated: 2024/06/07 14:35:03 by tfelguei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =	libft.a
+NAME = 
 
-SRCS =
+SRCS =	
 
 OBJS =	$(SRCS:.c=.o)
 
@@ -20,20 +20,19 @@ CC = cc
 
 CFLAGS = -Wextra -Wall -Werror -g
 
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME):
+	$(CC) $(CFLAGS) -c $(SRCS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	
 clean:	
-	rm -f *.o
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean	
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY:	all clean fclean re 
+.PHONY:	all clean fclean re bonus
