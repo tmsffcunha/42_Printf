@@ -1,12 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfelguei <tfelguei.students.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 14:44:11 by tfelguei          #+#    #+#             */
-/*   Updated: 2024/05/15 14:44:12 by tfelguei         ###   ########.fr       */
+/*   Created: 2024/06/07 14:32:19 by tfelguei          #+#    #+#             */
+/*   Updated: 2024/06/17 16:32:15 by tfelguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
+
+static int	ft_format(char c, va_list args)
+{
+	int	result;
+
+	result = 0;
+	if (!c)
+		return (0);
+	else if (c == 'c')
+		result += ft_putchar(va_arg(args, int));
+	else if (c == 's')
+		result += ft_putstr(va_arg(args, char *));
+	else if (c == 'p')
+		result += ft_putptr(va_arg(args, unsigned long));
+	else if (c == 'd' || c == 'i')
+		result += ft_putnbr(va_arg(args, int));
+	else if (c == 'u')
+		result += ft_putnbr_char(va_arg(args, unsigned int));
+	else if (c == 'x' || c == 'X')
+		result += ft_putnbr_hex(va_arg(args, unsigned int), c);
+	else if (c == '%')
+		result += write(1, "%", 1);
+	return (result);
+}
+int	ft_printf(const char *str, ...)
+{
+	va_list	args;
+	int		result;
+
+	va_start(args, str);
+	result = 0;
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (*str == '%')
+			result += ft_format(*(++str), args);
+		else
+			result += write(1, str, 1);
+		++str;
+	}
+	va_end(args);
+	return (result);
+}
