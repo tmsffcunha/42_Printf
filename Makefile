@@ -6,13 +6,13 @@
 #    By: tfelguei <tfelguei.students.42porto.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 14:34:03 by tfelguei          #+#    #+#              #
-#    Updated: 2024/06/07 14:35:03 by tfelguei         ###   ########.fr        #
+#    Updated: 2024/06/17 17:35:11 by tfelguei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = libftprintf.a
 
-SRCS =	
+SRCS =	extra_function1.c extra_function2.c ft_printf.c
 
 OBJS =	$(SRCS:.c=.o)
 
@@ -20,12 +20,11 @@ CC = cc
 
 CFLAGS = -Wextra -Wall -Werror -g
 
-
-all: $(NAME)
-
 $(NAME):
 	$(CC) $(CFLAGS) -c $(SRCS)
 	ar rcs $(NAME) $(OBJS)
+
+all: $(NAME)
 
 clean:	
 	rm -f $(OBJS) $(OBJS_BONUS)

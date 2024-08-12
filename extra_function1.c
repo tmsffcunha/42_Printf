@@ -6,7 +6,7 @@
 /*   By: tfelguei <tfelguei.students.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:32:25 by tfelguei          #+#    #+#             */
-/*   Updated: 2024/06/14 15:53:17 by tfelguei         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:02:06 by tfelguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_putstr(char *str)
 	int	count;
 
 	count = 0;
+	if (!str)
+		return (write(1, "(null)", 6));
 	while (*str)
 	{
 		count += ft_putchar(*str);
@@ -84,10 +86,10 @@ int	ft_putnbr_hex(unsigned int n, char format)
 
 	count = 0;
 	i = 0;
-	if (format == 'x')
-		base = "0123456789abcdef";
-	else
+	if (format == 'X')
 		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	if (n == 0)
 		return (ft_putchar('0'));
 	while (n > 0)

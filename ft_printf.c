@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfelguei <tfelguei.students.42porto.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:32:19 by tfelguei          #+#    #+#             */
-/*   Updated: 2024/06/17 16:32:15 by tfelguei         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:25:56 by tfelguei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_format(char c, va_list args)
 	else if (c == 's')
 		result += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-		result += ft_putptr(va_arg(args, unsigned long));
+		result += ft_putptr(va_arg(args, void *));
 	else if (c == 'd' || c == 'i')
 		result += ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
@@ -35,6 +35,7 @@ static int	ft_format(char c, va_list args)
 		result += write(1, "%", 1);
 	return (result);
 }
+
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
